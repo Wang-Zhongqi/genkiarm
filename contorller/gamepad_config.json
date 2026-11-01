@@ -1,0 +1,17 @@
+{
+  "buttons": {"a": 1, "x": 3, "y": 4, "shoulder_left": 5, "shoulder_right": 6},
+  "axes": {"horizontal": "X", "vertical": "Y", "vertical_sign": -1},
+  "triggers": {"mode": "combined", "axis": "Z", "open_sign": 1, "left_axis": "U", "right_axis": "R", "rest": -1},
+  "cartesian_axes": {"horizontal": [0, 1, 0], "vertical": [-1, 0, 0], "forward": [0, 0, 1]},
+  "rotation_axes": {"horizontal": [0, 1, 0], "vertical": [1, 0, 0], "roll": [0, 0, 1]},
+  "joint_pairs": {"default": [0, 1], "x": [2, 3], "y": [4, 5]},
+  "deadzone": 0.12,
+  "cartesian_speed": 0.03,
+  "rotation_speed": 0.5,
+  "joint_speed": 0.4,
+  "gripper_speed": 0.5,
+  "position_tolerance": 0.00005,
+  "rotation_tolerance": 0.001,
+  "ik_iterations": 40,
+  "rate": 50
+}
