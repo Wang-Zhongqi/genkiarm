@@ -1,0 +1,45 @@
+{
+  "robot": {
+    "type": "so101_follower",
+    "port": "COM3",
+    "id": "genkiarm_follower",
+    "cameras": {
+      "wrist": {
+        "type": "opencv",
+        "index_or_path": 1,
+        "width": 1920,
+        "height": 1080,
+        "fps": 30,
+        "fourcc": "MJPG"
+      },
+      "global": {
+        "type": "opencv",
+        "index_or_path": 0,
+        "width": 1920,
+        "height": 1080,
+        "fps": 30,
+        "fourcc": "MJPG"
+      }
+    }
+  },
+  "teleop": {
+    "type": "so101_leader",
+    "port": "COM4",
+    "id": "genkiarm_leader"
+  },
+  "dataset": {
+    "root": "./real/record/datasets/mov_chess_e3e4",
+    "no_stamp": false,
+    "repo_id": "local/genkiarm_record",
+    "single_task": "Move the Chinese chess piece according to ICCS notation: e3e4.",
+    "fps": 30,
+    "num_episodes": 10,
+    "episode_time_s": 60,
+    "reset_time_s": 15,
+    "push_to_hub": false,
+    "streaming_encoding": true,
+    "encoder_threads": 2
+  },
+  "display_data": true,
+  "play_sounds": false
+}
