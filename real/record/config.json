@@ -40,6 +40,6 @@
     "streaming_encoding": true,
     "encoder_threads": 2
   },
-  "display_data": true,
+  "display_data": false,
   "play_sounds": false
 }
