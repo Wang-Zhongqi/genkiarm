@@ -1,5 +1,0 @@
-lerobot[core-scripts,training,diffusion,feetech]==0.7.0
-numpy>=2.0.0,<2.3.0
-pyserial>=3.5,<4.0
-matplotlib>=3.10.3,<4.0
-mujoco>=3.3,<4.0

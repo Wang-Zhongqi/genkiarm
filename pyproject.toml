@@ -1,0 +1,18 @@
+[project]
+name = "genkiarm"
+version = "0.1.0"
+description = "Physical and simulated GenkiArm control"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "lerobot[core-scripts,training,diffusion,feetech]==0.7.0",
+    "numpy>=2.0.0,<2.3.0",
+    "pyserial>=3.5,<4.0",
+    "matplotlib>=3.10.3,<4.0",
+    "mujoco>=3.3,<4.0",
+    "opencv-python>=4.9.0,<4.14.0",
+]
+
+[tool.uv]
+package = false
+# LeRobot's headless dependency shares cv2 files with the desktop build.
+exclude-dependencies = ["opencv-python-headless"]
