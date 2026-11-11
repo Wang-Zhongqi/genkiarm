@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="deli_yw666_sx_preview">
+  <compiler angle="radian" texturedir="textures" />
+  <include file="assets/board.xml" />
+  <include file="assets/pieces.xml" />
+  <statistic center="0 0 0.005" extent="0.11" />
+  <visual>
+    <global azimuth="90" elevation="-65" offwidth="1280" offheight="960" />
+    <headlight ambient=".65 .65 .65" diffuse=".25 .25 .25" specular=".05 .05 .05" />
+  </visual>
+  <asset>
+    <texture name="preview_environment" type="skybox" builtin="flat" rgb1=".18 .20 .22" rgb2=".18 .20 .22" width="64" height="64" />
+  </asset>
+  <option timestep=".002" integrator="implicitfast" />
+  <worldbody>
+    <light name="preview_fill" directional="true" pos="-.3 -.2 .5" dir=".3 .2 -.5" ambient=".02 .02 .02" diffuse=".12 .12 .12" specular="0 0 0" castshadow="false" />
+    <include file="assets/grid_map.xml" />
+    <camera name="top" pos="0 0 .40" xyaxes="1 0 0 0 1 0" fovy="30" />
+    <camera name="overview" pos="0 -.25 .28" xyaxes="1 0 0 0 .746 .666" fovy="35" />
+    <include file="assets/layout.xml" />
+  </worldbody>
+</mujoco>

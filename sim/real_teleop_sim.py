@@ -5,7 +5,8 @@ Joint order for --signs and --offsets: pan, lift, elbow, wrist flex, wrist roll,
 Joint directions are defined by the model's rotation axes; default signs are all +1.
 All six angles use encoder center 2048 and 4096 ticks per revolution, not range midpoints.
 Offsets and joint positions, including the gripper, are in degrees.
-The simulated arm follows via qpos/mj_forward; no dynamics stepping is performed.
+Leader angles drive simulated actuators; physics resolves contacts with the board and pieces.
+The main viewer shows the scene; a separate window shows the OV2735 wrist camera.
 """
 
 import argparse
@@ -58,6 +59,8 @@ class SimArm:
         self.signs = np.asarray(signs, dtype=float)
         self.offsets = np.asarray(offsets, dtype=float)
         self.addresses = []
+        self.actuators = []
+        self.pending_time = 0.0
         self.limits = []
         for joint in JOINT_NAMES:
             joint_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_JOINT, joint)
@@ -70,23 +73,36 @@ class SimArm:
             if model.jnt_limited[joint_id]:
                 limits = model.jnt_range[joint_id].copy()
             # The current arm defines its motion limits on actuators.
+            matches = []
             for actuator in range(model.nu):
                 if (model.actuator_trntype[actuator] == mujoco.mjtTrn.mjTRN_JOINT
-                        and model.actuator_trnid[actuator, 0] == joint_id
-                        and model.actuator_ctrllimited[actuator]):
-                    low, high = model.actuator_ctrlrange[actuator]
-                    limits = [max(limits[0], low), min(limits[1], high)]
+                        and model.actuator_trnid[actuator, 0] == joint_id):
+                    matches.append(actuator)
+                    if model.actuator_ctrllimited[actuator]:
+                        low, high = model.actuator_ctrlrange[actuator]
+                        limits = [max(limits[0], low), min(limits[1], high)]
+            if len(matches) != 1:
+                raise ValueError(f"Expected one joint actuator for {joint}, found {len(matches)}")
+            self.actuators.append(matches[0])
             self.limits.append(limits)
         self.limits = np.asarray(self.limits)
 
-    def update(self, action):
+    def update(self, action, duration=0.0):
+        if not math.isfinite(duration) or duration < 0:
+            raise ValueError("Simulation duration must be finite and nonnegative")
         angles = np.array([float(action[f"{motor}.pos"]) for motor in JOINT_NAMES])
         if not np.all(np.isfinite(angles)):
             raise ValueError("Leader returned a non-finite joint position")
         targets = np.deg2rad(angles * self.signs + self.offsets)
         targets = np.clip(targets, self.limits[:, 0], self.limits[:, 1])
-        self.data.qpos[self.addresses] = targets
-        self.data.qvel[:] = 0
+        self.data.ctrl[self.actuators] = targets
+        # Bound catch-up after a serial/UI stall while retaining fractional steps.
+        self.pending_time += min(duration, 0.1)
+        steps = int((self.pending_time + 1e-12) / self.model.opt.timestep)
+        if steps:
+            mujoco.mj_step(self.model, self.data, nstep=steps)
+            self.pending_time -= steps * self.model.opt.timestep
+        # Refresh camera/contact poses after the final integration step.
         mujoco.mj_forward(self.model, self.data)
 
 
@@ -95,7 +111,7 @@ def build_parser():
     parser.add_argument("--port", default="COM4", help="Leader serial port (default: COM4)")
     parser.add_argument("--calibration", type=Path,
                         default=ROOT / "real/record/genkiarm_leader.json")
-    parser.add_argument("--model", type=Path, default=ROOT / "sim/arm/arm.xml")
+    parser.add_argument("--mjcf", type=Path, default=ROOT / "sim/play_chess.xml",)
     parser.add_argument("--fps", type=float, default=30)
     parser.add_argument("--signs", type=int, nargs=6, choices=(-1, 1), default=[1] * 6)
     parser.add_argument("--offsets", type=float, nargs=6, default=[0] * 6,
@@ -112,14 +128,17 @@ def run(args):
         raise ValueError("--offsets must be finite")
     calibration_path = args.calibration.resolve()
     load_calibration(calibration_path)
-    model = mujoco.MjModel.from_xml_path(str(args.model.resolve()))
+    model = mujoco.MjModel.from_xml_path(str(args.mjcf.resolve()))
     sim_arm = SimArm(model, args.signs, args.offsets)
+    if mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_CAMERA, "OV2735") < 0:
+        raise ValueError("Model is missing wrist camera OV2735")
     if args.check:
         print(f"Model OK: {model.nq} coordinates; calibration OK: {calibration_path}")
         return
 
     from lerobot.teleoperators.so_leader import SO101Leader, SO101LeaderConfig
     from mujoco import viewer as mj_viewer
+    import cv2
 
     leader = SO101Leader(SO101LeaderConfig(
         port=args.port,
@@ -137,18 +156,31 @@ def run(args):
         sim_arm.update(read_leader_action(leader))
         print(f"Reading {args.port} using {calibration_path}")
         print("Real-to-sim teleoperation; leader torque is disabled. Close the viewer or press Ctrl+C to stop.")
-        with mj_viewer.launch_passive(model, sim_arm.data) as viewer:
-            viewer.cam.lookat[:] = [0, 0, 0.25]
-            viewer.cam.distance = 1.0
-            viewer.cam.azimuth = 135
-            viewer.cam.elevation = -20
-            while viewer.is_running():
-                started = time.perf_counter()
-                action = read_leader_action(leader)
-                with viewer.lock():
-                    sim_arm.update(action)
-                viewer.sync()
-                time.sleep(max(0, 1 / args.fps - (time.perf_counter() - started)))
+        window = "Wrist camera - OV2735"
+        try:
+            with mujoco.Renderer(model, height=360, width=640) as renderer:
+                cv2.namedWindow(window, cv2.WINDOW_NORMAL)
+                cv2.resizeWindow(window, 640, 360)
+                with mj_viewer.launch_passive(model, sim_arm.data) as viewer:
+                    mujoco.mjv_defaultFreeCamera(model, viewer.cam)
+                    previous = time.perf_counter()
+                    while viewer.is_running():
+                        started = time.perf_counter()
+                        action = read_leader_action(leader)
+                        now = time.perf_counter()
+                        with viewer.lock():
+                            sim_arm.update(action, now - previous)
+                            renderer.update_scene(sim_arm.data, camera="OV2735")
+                            wrist_rgb = renderer.render()
+                        previous = now
+                        viewer.sync()
+                        cv2.imshow(window, cv2.cvtColor(wrist_rgb, cv2.COLOR_RGB2BGR))
+                        if (cv2.waitKey(1) & 0xFF in (27, ord("q"))
+                                or cv2.getWindowProperty(window, cv2.WND_PROP_VISIBLE) < 1):
+                            break
+                        time.sleep(max(0, 1 / args.fps - (time.perf_counter() - started)))
+        finally:
+            cv2.destroyAllWindows()
     finally:
         if leader.is_connected:
             leader.disconnect()

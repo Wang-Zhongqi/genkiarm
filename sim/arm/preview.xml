@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="genkiarm_preview">
+  <compiler meshdir="meshes" angle="radian" />
+  <option timestep="0.002" gravity="0 0 -9.81" integrator="implicitfast" solver="Newton" cone="elliptic" impratio="50" />
+  <include file="assets/arm.xml" />
+  <worldbody>
+    <light pos="0 0 3" />
+    <geom name="floor" type="plane" size="5 5 0.1" rgba="0.8 0.8 0.8 1.0" contype="8" conaffinity="7" />
+  </worldbody>
+</mujoco>

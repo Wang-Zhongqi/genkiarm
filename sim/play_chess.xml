@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="genkiarm_play_chess">
+  <compiler angle="radian" meshdir="arm/meshes" texturedir="chess/textures" />
+  <option timestep=".002" gravity="0 0 -9.81" integrator="implicitfast" cone="elliptic" impratio="50" solver="Newton" />
+  <include file="arm/assets/arm.xml" />
+  <include file="chess/assets/board.xml" />
+  <include file="chess/assets/pieces.xml" />
+  <statistic center="-.13 0 .10" extent=".34" />
+  <visual>
+    <global azimuth="135" elevation="-40" offwidth="1280" offheight="960" />
+    <headlight active="0" />
+  </visual>
+  <asset>
+    <texture name="scene_background" type="skybox" builtin="flat" rgb1=".16 .18 .20" rgb2=".16 .18 .20" width="64" height="64" />
+  </asset>
+  <worldbody>
+    <light name="office_ceiling_front_left" pos="-.5 -.45 1" dir=".7 .7 -1" directional="true" ambient=".15 .15 .15" diffuse=".1 .1 .1" specular=".008 .008 .008" castshadow="false" />
+    <light name="office_ceiling_front_right" pos=".25 -.45 1" dir="-.7 .7 -1" directional="true" ambient=".15 .15 .15" diffuse=".1 .1 .1" specular=".008 .008 .008" castshadow="false" />
+    <light name="office_ceiling_back_left" pos="-.5 .45 1" dir=".7 -.7 -1" directional="true" ambient=".15 .15 .15" diffuse=".1 .1 .1" specular=".008 .008 .008" castshadow="false" />
+    <light name="office_ceiling_back_right" pos=".25 .45 1" dir="-.7 -.7 -1" directional="true" ambient=".15 .15 .15" diffuse=".1 .1 .1" specular=".008 .008 .008" castshadow="false" />
+    <light name="office_wall_bounce" pos=".1 -.5 .35" dir="-.4 1 -.1" directional="true" ambient=".04 .04 .04" diffuse=".12 .12 .12" specular="0 0 0" castshadow="false" />
+    <geom name="floor" type="plane" pos="0 0 0" size="1 1 .1" rgba=".28 .30 .32 1" contype="8" conaffinity="7" />
+    <camera name="top" pos="-.15 0 .75" xyaxes="1 0 0 0 1 0" fovy="55" />
+    <camera name="overview" pos="0.3 -0.45 0.4" xyaxes="0.7229906911531178 0.6908577715463126 -0.0 -0.31588516850449083 0.3305775019233044 0.8893453072575563" fovy="48" />
+    <frame name="chess_placement" pos="-.20 0 .0002" quat=".7071067811865476 0 0 .7071067811865476">
+      <include file="chess/assets/grid_map.xml" />
+      <include file="chess/assets/layout.xml" />
+    </frame>
+  </worldbody>
+</mujoco>

@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujocoinclude>
+  <body name="red_00" pos="-0.06 -0.06 0.0131" euler="0 0 0">
+    <freejoint name="red_00_joint" />
+    <geom class="red_che" name="red_00_geom" />
+  </body>
+  <body name="red_01" pos="-0.045 -0.06 0.0131" euler="0 0 0">
+    <freejoint name="red_01_joint" />
+    <geom class="red_ma" name="red_01_geom" />
+  </body>
+  <body name="red_02" pos="-0.03 -0.06 0.0131" euler="0 0 0">
+    <freejoint name="red_02_joint" />
+    <geom class="red_xiang" name="red_02_geom" />
+  </body>
+  <body name="red_03" pos="-0.015 -0.06 0.0131" euler="0 0 0">
+    <freejoint name="red_03_joint" />
+    <geom class="red_shi" name="red_03_geom" />
+  </body>
+  <body name="red_04" pos="0.0 -0.06 0.0131" euler="0 0 0">
+    <freejoint name="red_04_joint" />
+    <geom class="red_shuai" name="red_04_geom" />
+  </body>
+  <body name="red_05" pos="0.015 -0.06 0.0131" euler="0 0 0">
+    <freejoint name="red_05_joint" />
+    <geom class="red_shi" name="red_05_geom" />
+  </body>
+  <body name="red_06" pos="0.03 -0.06 0.0131" euler="0 0 0">
+    <freejoint name="red_06_joint" />
+    <geom class="red_xiang" name="red_06_geom" />
+  </body>
+  <body name="red_07" pos="0.045 -0.06 0.0131" euler="0 0 0">
+    <freejoint name="red_07_joint" />
+    <geom class="red_ma" name="red_07_geom" />
+  </body>
+  <body name="red_08" pos="0.06 -0.06 0.0131" euler="0 0 0">
+    <freejoint name="red_08_joint" />
+    <geom class="red_che" name="red_08_geom" />
+  </body>
+  <body name="red_09" pos="-0.045 -0.03333333333333333 0.0131" euler="0 0 0">
+    <freejoint name="red_09_joint" />
+    <geom class="red_pao" name="red_09_geom" />
+  </body>
+  <body name="red_10" pos="0.045 -0.03333333333333333 0.0131" euler="0 0 0">
+    <freejoint name="red_10_joint" />
+    <geom class="red_pao" name="red_10_geom" />
+  </body>
+  <body name="red_11" pos="-0.06 -0.02 0.0131" euler="0 0 0">
+    <freejoint name="red_11_joint" />
+    <geom class="red_bing" name="red_11_geom" />
+  </body>
+  <body name="red_12" pos="-0.03 -0.02 0.0131" euler="0 0 0">
+    <freejoint name="red_12_joint" />
+    <geom class="red_bing" name="red_12_geom" />
+  </body>
+  <body name="red_13" pos="0.0 -0.02 0.0131" euler="0 0 0">
+    <freejoint name="red_13_joint" />
+    <geom class="red_bing" name="red_13_geom" />
+  </body>
+  <body name="red_14" pos="0.03 -0.02 0.0131" euler="0 0 0">
+    <freejoint name="red_14_joint" />
+    <geom class="red_bing" name="red_14_geom" />
+  </body>
+  <body name="red_15" pos="0.06 -0.02 0.0131" euler="0 0 0">
+    <freejoint name="red_15_joint" />
+    <geom class="red_bing" name="red_15_geom" />
+  </body>
+  <body name="black_00" pos="-0.06 0.06 0.0131" euler="0 0 3.141592653589793">
+    <freejoint name="black_00_joint" />
+    <geom class="black_che" name="black_00_geom" />
+  </body>
+  <body name="black_01" pos="-0.045 0.06 0.0131" euler="0 0 3.141592653589793">
+    <freejoint name="black_01_joint" />
+    <geom class="black_ma" name="black_01_geom" />
+  </body>
+  <body name="black_02" pos="-0.03 0.06 0.0131" euler="0 0 3.141592653589793">
+    <freejoint name="black_02_joint" />
+    <geom class="black_xiang" name="black_02_geom" />
+  </body>
+  <body name="black_03" pos="-0.015 0.06 0.0131" euler="0 0 3.141592653589793">
+    <freejoint name="black_03_joint" />
+    <geom class="black_shi" name="black_03_geom" />
+  </body>
+  <body name="black_04" pos="0.0 0.06 0.0131" euler="0 0 3.141592653589793">
+    <freejoint name="black_04_joint" />
+    <geom class="black_jiang" name="black_04_geom" />
+  </body>
+  <body name="black_05" pos="0.015 0.06 0.0131" euler="0 0 3.141592653589793">
+    <freejoint name="black_05_joint" />
+    <geom class="black_shi" name="black_05_geom" />
+  </body>
+  <body name="black_06" pos="0.03 0.06 0.0131" euler="0 0 3.141592653589793">
+    <freejoint name="black_06_joint" />
+    <geom class="black_xiang" name="black_06_geom" />
+  </body>
+  <body name="black_07" pos="0.045 0.06 0.0131" euler="0 0 3.141592653589793">
+    <freejoint name="black_07_joint" />
+    <geom class="black_ma" name="black_07_geom" />
+  </body>
+  <body name="black_08" pos="0.06 0.06 0.0131" euler="0 0 3.141592653589793">
+    <freejoint name="black_08_joint" />
+    <geom class="black_che" name="black_08_geom" />
+  </body>
+  <body name="black_09" pos="-0.045 0.03333333333333333 0.0131" euler="0 0 3.141592653589793">
+    <freejoint name="black_09_joint" />
+    <geom class="black_pao" name="black_09_geom" />
+  </body>
+  <body name="black_10" pos="0.045 0.03333333333333333 0.0131" euler="0 0 3.141592653589793">
+    <freejoint name="black_10_joint" />
+    <geom class="black_pao" name="black_10_geom" />
+  </body>
+  <body name="black_11" pos="-0.06 0.019999999999999993 0.0131" euler="0 0 3.141592653589793">
+    <freejoint name="black_11_joint" />
+    <geom class="black_zu" name="black_11_geom" />
+  </body>
+  <body name="black_12" pos="-0.03 0.019999999999999993 0.0131" euler="0 0 3.141592653589793">
+    <freejoint name="black_12_joint" />
+    <geom class="black_zu" name="black_12_geom" />
+  </body>
+  <body name="black_13" pos="0.0 0.019999999999999993 0.0131" euler="0 0 3.141592653589793">
+    <freejoint name="black_13_joint" />
+    <geom class="black_zu" name="black_13_geom" />
+  </body>
+  <body name="black_14" pos="0.03 0.019999999999999993 0.0131" euler="0 0 3.141592653589793">
+    <freejoint name="black_14_joint" />
+    <geom class="black_zu" name="black_14_geom" />
+  </body>
+  <body name="black_15" pos="0.06 0.019999999999999993 0.0131" euler="0 0 3.141592653589793">
+    <freejoint name="black_15_joint" />
+    <geom class="black_zu" name="black_15_geom" />
+  </body>
+</mujocoinclude>

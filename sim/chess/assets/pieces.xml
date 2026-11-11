@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujocoinclude>
+  <asset>
+    <texture name="red_che_texture" type="cube" filefront="../textures/pieces/red_che.png" rgb1=".972549 .929412 .784314" />
+    <material name="red_che_material" texture="red_che_texture" texuniform="false" specular=".08" shininess=".15" />
+    <texture name="red_ma_texture" type="cube" filefront="../textures/pieces/red_ma.png" rgb1=".972549 .929412 .784314" />
+    <material name="red_ma_material" texture="red_ma_texture" texuniform="false" specular=".08" shininess=".15" />
+    <texture name="red_xiang_texture" type="cube" filefront="../textures/pieces/red_xiang.png" rgb1=".972549 .929412 .784314" />
+    <material name="red_xiang_material" texture="red_xiang_texture" texuniform="false" specular=".08" shininess=".15" />
+    <texture name="red_shi_texture" type="cube" filefront="../textures/pieces/red_shi.png" rgb1=".972549 .929412 .784314" />
+    <material name="red_shi_material" texture="red_shi_texture" texuniform="false" specular=".08" shininess=".15" />
+    <texture name="red_shuai_texture" type="cube" filefront="../textures/pieces/red_shuai.png" rgb1=".972549 .929412 .784314" />
+    <material name="red_shuai_material" texture="red_shuai_texture" texuniform="false" specular=".08" shininess=".15" />
+    <texture name="red_pao_texture" type="cube" filefront="../textures/pieces/red_pao.png" rgb1=".972549 .929412 .784314" />
+    <material name="red_pao_material" texture="red_pao_texture" texuniform="false" specular=".08" shininess=".15" />
+    <texture name="red_bing_texture" type="cube" filefront="../textures/pieces/red_bing.png" rgb1=".972549 .929412 .784314" />
+    <material name="red_bing_material" texture="red_bing_texture" texuniform="false" specular=".08" shininess=".15" />
+    <texture name="black_che_texture" type="cube" filefront="../textures/pieces/black_che.png" rgb1=".972549 .929412 .784314" />
+    <material name="black_che_material" texture="black_che_texture" texuniform="false" specular=".08" shininess=".15" />
+    <texture name="black_ma_texture" type="cube" filefront="../textures/pieces/black_ma.png" rgb1=".972549 .929412 .784314" />
+    <material name="black_ma_material" texture="black_ma_texture" texuniform="false" specular=".08" shininess=".15" />
+    <texture name="black_xiang_texture" type="cube" filefront="../textures/pieces/black_xiang.png" rgb1=".972549 .929412 .784314" />
+    <material name="black_xiang_material" texture="black_xiang_texture" texuniform="false" specular=".08" shininess=".15" />
+    <texture name="black_shi_texture" type="cube" filefront="../textures/pieces/black_shi.png" rgb1=".972549 .929412 .784314" />
+    <material name="black_shi_material" texture="black_shi_texture" texuniform="false" specular=".08" shininess=".15" />
+    <texture name="black_jiang_texture" type="cube" filefront="../textures/pieces/black_jiang.png" rgb1=".972549 .929412 .784314" />
+    <material name="black_jiang_material" texture="black_jiang_texture" texuniform="false" specular=".08" shininess=".15" />
+    <texture name="black_pao_texture" type="cube" filefront="../textures/pieces/black_pao.png" rgb1=".972549 .929412 .784314" />
+    <material name="black_pao_material" texture="black_pao_texture" texuniform="false" specular=".08" shininess=".15" />
+    <texture name="black_zu_texture" type="cube" filefront="../textures/pieces/black_zu.png" rgb1=".972549 .929412 .784314" />
+    <material name="black_zu_material" texture="black_zu_texture" texuniform="false" specular=".08" shininess=".15" />
+  </asset>
+  <default>
+    <default class="piece">
+      <geom type="cylinder" size=".00705 .003" mass=".002" condim="4" friction=".5 .0001 .00001" contype="4" conaffinity="15" solref=".006 1" />
+      <default class="red_che">
+        <geom material="red_che_material" />
+      </default>
+      <default class="red_ma">
+        <geom material="red_ma_material" />
+      </default>
+      <default class="red_xiang">
+        <geom material="red_xiang_material" />
+      </default>
+      <default class="red_shi">
+        <geom material="red_shi_material" />
+      </default>
+      <default class="red_shuai">
+        <geom material="red_shuai_material" />
+      </default>
+      <default class="red_pao">
+        <geom material="red_pao_material" />
+      </default>
+      <default class="red_bing">
+        <geom material="red_bing_material" />
+      </default>
+      <default class="black_che">
+        <geom material="black_che_material" />
+      </default>
+      <default class="black_ma">
+        <geom material="black_ma_material" />
+      </default>
+      <default class="black_xiang">
+        <geom material="black_xiang_material" />
+      </default>
+      <default class="black_shi">
+        <geom material="black_shi_material" />
+      </default>
+      <default class="black_jiang">
+        <geom material="black_jiang_material" />
+      </default>
+      <default class="black_pao">
+        <geom material="black_pao_material" />
+      </default>
+      <default class="black_zu">
+        <geom material="black_zu_material" />
+      </default>
+    </default>
+  </default>
+</mujocoinclude>
