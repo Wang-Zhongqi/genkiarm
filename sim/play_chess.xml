@@ -1,10 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <mujoco model="genkiarm_play_chess">
   <compiler angle="radian" meshdir="arm/meshes" texturedir="chess/textures" />
-  <option timestep=".002" gravity="0 0 -9.81" integrator="implicitfast" cone="elliptic" impratio="50" solver="Newton" />
+  <option timestep=".002" gravity="0 0 -9.81" integrator="implicitfast" cone="elliptic" impratio="50" solver="Newton" noslip_iterations="2" />
   <include file="arm/assets/arm.xml" />
   <include file="chess/assets/board.xml" />
   <include file="chess/assets/pieces.xml" />
+  <contact>
+    <pair geom1="board_collision" geom2="floor" condim="6" friction="1 1 .005 .0001 .0001" solref=".013 1" />
+  </contact>
   <statistic center="-.13 0 .10" extent=".34" />
   <visual>
     <global azimuth="135" elevation="-40" offwidth="1280" offheight="960" />

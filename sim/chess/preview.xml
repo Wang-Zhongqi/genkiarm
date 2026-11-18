@@ -13,6 +13,7 @@
   </asset>
   <option timestep=".002" integrator="implicitfast" />
   <worldbody>
+    <geom name="floor" type="plane" pos="0 0 0" size="1 1 .1" rgba=".28 .30 .32 1" contype="8" conaffinity="7" />
     <light name="preview_fill" directional="true" pos="-.3 -.2 .5" dir=".3 .2 -.5" ambient=".02 .02 .02" diffuse=".12 .12 .12" specular="0 0 0" castshadow="false" />
     <include file="assets/grid_map.xml" />
     <camera name="top" pos="0 0 .40" xyaxes="1 0 0 0 1 0" fovy="30" />

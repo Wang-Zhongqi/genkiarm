@@ -11,7 +11,7 @@
   </asset>
   <default>
     <default class="board_collision">
-      <geom type="box" pos="0 0 .005" size=".07 .07 .005" group="3" material="board_edge_material" contype="2" conaffinity="13" solref=".006 1" />
+      <geom type="box" pos="0 0 .005" size=".07 .07 .005" group="3" material="board_edge_material" contype="2" conaffinity="13" friction="2 .005 .0001" solref=".006 1" />
     </default>
     <default class="board_top">
       <geom type="mesh" mesh="board_top" material="board_material" contype="0" conaffinity="0" mass="0" />

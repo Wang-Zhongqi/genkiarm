@@ -4,7 +4,6 @@
     <default class="genkiarm">
       <geom type="mesh" contype="1" conaffinity="15" solref=".006 1" friction="1 .005 .0001" />
       <default class="grip_contact">
-        <!-- Dedicated finger pads: sliding, torsional and rolling friction; the board keeps its own lower friction. -->
         <geom condim="6" friction="2 .004 .0002" solref=".004 1" solimp=".95 .99 .001" priority="1" />
       </default>
     </default>
@@ -41,11 +40,12 @@
     <exclude body1="camera_bracket" body2="ov2735_camera" />
   </contact>
   <actuator>
-    <pid name="servo1" joint="shoulder_pan" input="pos" kp="5" ki="0.2" kv="0.2" imax="1" ctrllimited="true" ctrlrange="-1.570796 1.570796" slewmax="4.98" />
-    <pid name="servo2" joint="shoulder_lift" input="pos" kp="30" ki="60" kv="3" imax="1" ctrllimited="true" ctrlrange="-1.570796 1.570796" slewmax="0.8" />
-    <pid name="servo3" joint="elbow_flex" input="pos" kp="20" ki="40" kv="1.5" imax="1" ctrllimited="true" ctrlrange="-1.570796 1.570796" slewmax="4.98" />
-    <pid name="servo4" joint="wrist_flex" input="pos" kp="10" ki="20" kv="0.6" imax="1" ctrllimited="true" ctrlrange="-1.570796 1.570796" slewmax="4.98" />
-    <pid name="servo5" joint="wrist_roll" input="pos" kp="5" ki="0.2" kv="0.2" imax="1" ctrllimited="true" ctrlrange="-1.570796 1.570796" slewmax="4.98" />
+    <!-- Provisional output torque caps in Nm; replace with measured servo limits when calibrated. -->
+    <pid name="servo1" joint="shoulder_pan" input="pos" kp="5" ki="0.2" kv="0.2" imax="1" ctrllimited="true" ctrlrange="-1.570796 1.570796" slewmax="4.98" forcelimited="true" forcerange="-2.94 2.94" />
+    <pid name="servo2" joint="shoulder_lift" input="pos" kp="30" ki="60" kv="3" imax="1" ctrllimited="true" ctrlrange="-1.570796 1.570796" slewmax="0.8" forcelimited="true" forcerange="-2.94 2.94" />
+    <pid name="servo3" joint="elbow_flex" input="pos" kp="20" ki="40" kv="1.5" imax="1" ctrllimited="true" ctrlrange="-1.570796 1.570796" slewmax="4.98" forcelimited="true" forcerange="-2.94 2.94" />
+    <pid name="servo4" joint="wrist_flex" input="pos" kp="10" ki="20" kv="0.6" imax="1" ctrllimited="true" ctrlrange="-1.570796 1.570796" slewmax="4.98" forcelimited="true" forcerange="-2.94 2.94" />
+    <pid name="servo5" joint="wrist_roll" input="pos" kp="5" ki="0.2" kv="0.2" imax="1" ctrllimited="true" ctrlrange="-1.570796 1.570796" slewmax="4.98" forcelimited="true" forcerange="-2.94 2.94" />
     <pid name="servo6" joint="gripper" input="pos" kp="1" ki="0" kv=".05" imax="1" ctrllimited="true" ctrlrange="0 1.570796" forcerange="-.15 .15" forcelimited="true" />
   </actuator>
   <worldbody>

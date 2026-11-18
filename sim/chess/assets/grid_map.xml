@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <mujocoinclude>
   <body name="board">
+    <freejoint name="board_joint" />
     <geom name="board_collision" class="board_collision" />
     <geom name="board_visual" class="board_top" />
     <site name="a0" pos="-0.06 -0.06 0.01" size="0.0005" rgba="0 0 0 0" />

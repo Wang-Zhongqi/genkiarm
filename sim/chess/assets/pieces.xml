@@ -32,7 +32,7 @@
   </asset>
   <default>
     <default class="piece">
-      <geom type="cylinder" size=".00705 .003" mass=".002" condim="4" friction=".5 .0001 .00001" contype="4" conaffinity="15" solref=".006 1" />
+      <geom type="cylinder" size=".00705 .003" mass=".002" condim="6" friction=".5 .0001 .00001" contype="4" conaffinity="15" solref=".006 1" />
       <default class="red_che">
         <geom material="red_che_material" />
       </default>
